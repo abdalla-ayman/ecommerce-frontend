@@ -27,9 +27,9 @@ function Signup() {
   };
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center">
+    <div className="w-full min-h-screen pt-16 flex justify-center items-center">
       <form onSubmit={handleSubmit}>
-        <h1 className="mb-4 text-2xl">Signup</h1>
+        <h1 className="mb-4 text-2xl">Sign Up</h1>
         <InputAndLabel
           state={{
             id: "firstname",
@@ -70,14 +70,11 @@ function Signup() {
         <p className="text-sm">
           Already Have an Account{" "}
           <Link to="/auth/login" className="text-blue-600">
-            Login
+            Sign in
           </Link>
         </p>
-        <button
-          type="submit"
-          className="mx-auto my-2 block border rounded px-3 py-1 bg-blue-500"
-        >
-          Signup
+        <button type="submit" className="mx-auto my-2 mbc block  px-10 py-2 ">
+          Sign Up
         </button>
       </form>
     </div>

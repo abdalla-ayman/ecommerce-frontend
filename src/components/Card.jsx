@@ -24,21 +24,27 @@ function Card({ item }) {
   };
 
   return (
-    <div className="h-96 w-72	 bg-teal-100">
+    <div className="h-96 w-72 border flex flex-col mx-10 my-5 rounded">
       <img
         src={`http://localhost:5000/${item.imgURL}`}
         alt=""
-        className="w-full h-64 object-cover"
+        className="w-full h-56	object-cover"
       />
-      <h3>{item.name}</h3>
-      <div>
-        <span>{item.price}$</span>{" "}
-        <button className="bg-blue-300" onClick={_addToCart}>
-          Add ot Cart
-        </button>
+      <div className="mx-2">
+        <h3 className="text-lg mc">{item.name}</h3>
+        <p className="text-sm sc border w-fit py-1 rounded px-4">
+          {item.category}
+        </p>
+        <p className="sc">
+          <sup>$</sup> {item.price}
+        </p>
       </div>
-
-      <p>{item.category}</p>
+      <button
+        className="py-1 px-8 w-fit self-center font-bold mt-2	"
+        onClick={_addToCart}
+      >
+        Add To Cart
+      </button>
     </div>
   );
 }

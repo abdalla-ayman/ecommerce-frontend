@@ -1,3 +1,32 @@
 body {
   font-family: "Ubuntu", sans-serif;
 }
+
+.mc {
+  color: #153a5b;
+}
+
+.mbc {
+  background-color: #153a5b;
+}
+
+.sc {
+  color: rgb(90 94 96);
+}
+
+textarea {
+  resize: none;
+}
+
+input,
+textarea {
+  border-color: rgb(90 94 96);
+  outline: none;
+  min-width: 300px;
+  width: 100%;
+}
+
+button {
+  color: white;
+  background-color: #153a5b;
+}

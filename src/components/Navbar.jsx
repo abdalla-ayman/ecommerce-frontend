@@ -7,49 +7,44 @@ function Navbar() {
 
   return (
     <nav
-      className="flex justify-between bg-amber-400 text-lg  px-3 py-2 uppercase
+      className="flex justify-between items-center px-4 py-2 drop-shadow-md mc fixed bg-white w-full top-0
     "
     >
-      <div className="flex">
-        <div className="mr-6 font-bold">LOGO</div>
-        <ul className="flex">
-          <li className="mx-2">
-            <NavLink to="/"> Home</NavLink>
-          </li>
-          <li className="mx-2">
-            <NavLink to="/products">Produts</NavLink>
-          </li>
-          <li className="mx-2">
-            <NavLink to="/about">About</NavLink>
-          </li>
-        </ul>
+      <div className="mr-6 text-3xl">
+        <NavLink to="/">SELLERS</NavLink>
       </div>
-      <div
-        className="text-base capitalize
-"
-      >
+      <ul className="flex font-medium	">
+        <li className="mx-2">
+          <NavLink to="/products">Products</NavLink>
+        </li>
         {user ? (
-          <button
-            className="p-2 bg-emerald-500 rounded"
-            onClick={() => {
-              setUser(null);
-              localStorage.removeItem("token");
-            }}
-          >
-            Logout
-          </button>
+          <li className="mx-2">
+            <button
+              className="mc bg-transparent font-medium"
+              onClick={() => {
+                setUser(null);
+                localStorage.removeItem("token");
+              }}
+            >
+              Logout
+            </button>
+          </li>
         ) : (
-          <NavLink to="/auth/login" className="p-2 bg-emerald-500 rounded">
-            Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
-          </NavLink>
+          <li>
+            <NavLink to="/auth/login" className="p-2 ">
+              Sign In
+            </NavLink>
+          </li>
         )}
-        <NavLink to="/cart" className="p-2 bg-emerald-500 mx-1 rounded ">
-          <i class="fa-solid fa-cart-shopping"></i>{" "}
-          <span className="rounded px-1 mx-auto text-sm bold bg-red-600 text-white">
-            {user ? (user.cart ? user.cart.itemsQuantity : 0) : 0}
-          </span>
-        </NavLink>
-      </div>
+        <li>
+          <NavLink to="/cart" className="p-2  ">
+            <i class="fa-solid fa-cart-shopping"></i>{" "}
+            <span className="rounded px-1 mx-auto text-sm bold bg-red-600 text-white">
+              {user ? (user.cart ? user.cart.itemsQuantity : 0) : 0}
+            </span>
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 }

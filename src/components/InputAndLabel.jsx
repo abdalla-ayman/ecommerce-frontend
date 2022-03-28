@@ -4,13 +4,13 @@ function InputAndLabel({ state }) {
   const { label, id, type, handleChange, value } = state;
   const classes = type == "file" && " border-black";
   return (
-    <div className="flex flex-col my-3">
+    <div className="flex flex-col my-3 ">
       <label htmlFor={id} className="mb-2">
         {label}
       </label>
       {type != "file" ? (
         <input
-          className={"px-2 py-1 border rounded " + classes}
+          className={"px-2 py-2 border " + classes}
           type={type}
           id={id}
           onChange={handleChange}
@@ -18,7 +18,7 @@ function InputAndLabel({ state }) {
         />
       ) : (
         <input
-          className={"px-2 py-1 border rounded " + classes}
+          className={"px-2 py-2 border " + classes}
           type={type}
           id={id}
           onChange={handleChange}

@@ -1,12 +1,19 @@
-import React from "react";
+import CartItem from "../components/CartItem";
 import { useQuery } from "react-query";
 import { getTheCart } from "../api/cart";
 
 function Cart() {
-  const { data, status } = useQuery("get-cart", getTheCart);
-  console.log(data);
+  const { data: response, status } = useQuery("get-cart", getTheCart);
 
-  return <div>Cart</div>;
+  return (
+    <div>
+      {response
+        ? response.data.items.map((item) => {
+            return <CartItem data={item} />;
+          })
+        : null}
+    </div>
+  );
 }
 
 export default Cart;
