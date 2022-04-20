@@ -7,7 +7,7 @@ function Navbar() {
 
   return (
     <nav
-      className="flex justify-between items-center px-4 py-2 drop-shadow-md mc fixed bg-white w-full top-0
+      className="flex justify-between items-center px-4 py-2 drop-shadow-md mc fixed bg-white w-full top-0 z-20 h-
     "
     >
       <div className="mr-6 text-3xl">

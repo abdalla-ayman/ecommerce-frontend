@@ -3,14 +3,16 @@ import { useQuery } from "react-query";
 import { getTheCart } from "../api/cart";
 
 function Cart() {
-  const { data: response, status } = useQuery("get-cart", getTheCart);
+  const { data: response, status, refetch } = useQuery("get-cart", getTheCart);
 
   return (
-    <div>
+    <div className="min-h-screen pt-16">
       {response
-        ? response.data.items.map((item) => {
-            return <CartItem data={item} />;
-          })
+        ? response.data
+          ? response.data.items.map((item) => {
+              return <CartItem refetch={refetch} data={item} />;
+            })
+          : null
         : null}
     </div>
   );

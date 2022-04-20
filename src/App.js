@@ -27,7 +27,10 @@ function App() {
             </>
           )}
 
-          <Route path="/admin" element={<ControlPanel />} />
+          <Route
+            path="/admin"
+            element={user ? <ControlPanel /> : <Navigate to="/" replace />}
+          />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<Navigate to="/" replace />} />

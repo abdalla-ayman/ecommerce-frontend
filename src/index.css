@@ -18,7 +18,7 @@ textarea {
   resize: none;
 }
 
-input,
+form input,
 textarea {
   border-color: rgb(90 94 96);
   outline: none;
