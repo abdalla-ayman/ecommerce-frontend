@@ -20,17 +20,18 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />}></Route>
+
           {!user && (
             <>
               <Route element={<Login />} path="/auth/login" />
               <Route element={<Signup />} path="/auth/signup" />
             </>
           )}
-
-          <Route
-            path="/admin"
-            element={user ? <ControlPanel /> : <Navigate to="/" replace />}
-          />
+          {user && (
+            <>
+              <Route element={<ControlPanel />} path="/admin" />
+            </>
+          )}
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<Navigate to="/" replace />} />

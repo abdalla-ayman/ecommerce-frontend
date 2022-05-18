@@ -6,8 +6,9 @@ import { useMutation } from "react-query";
 function AddItem() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [category, setCategory] = useState("1");
+  const [category, setCategory] = useState("shirt");
   const [img, setImg] = useState(null);
+  const [imgPrev, setImgPrev] = useState("");
   const { mutate, status } = useMutation(addItem);
 
   const handleSubmit = (e) => {
@@ -24,13 +25,21 @@ function AddItem() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex flex-col max-w-lg mx-auto">
+      <img
+        src={imgPrev}
+        alt=""
+        className="w-72 h-56	object-cover border-solid border-2 border-gray-400 rounded   self-center"
+      />
       <InputAndLabel
         state={{
           id: "item-image",
           label: "Prodcut Image",
           type: "file",
-          handleChange: (e) => setImg(e.target.files[0]),
+          handleChange: (e) => {
+            setImg(e.target.files[0]);
+            setImgPrev(URL.createObjectURL(e.target.files[0]));
+          },
           value: img,
         }}
       />
@@ -61,12 +70,14 @@ function AddItem() {
         </label>
         <select
           id="item-category"
-          className="px-2 py-1 border rounded"
+          className="px-2 py-2 border rounded"
           onChange={(e) => setCategory(e.target.value)}
           value={category}
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
+          <option value="shirt">Shirt</option>
+          <option value="short">Shorts</option>
+          <option value="shoe">Shoes</option>
+          <option value="hat">Hats</option>
         </select>
       </div>
 

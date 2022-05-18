@@ -22,6 +22,7 @@ function InputAndLabel({ state }) {
           type={type}
           id={id}
           onChange={handleChange}
+          accept="image/*"
         />
       )}
     </div>

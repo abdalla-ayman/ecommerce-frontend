@@ -6,7 +6,7 @@ import { getItems } from "../api/product";
 function Browse() {
   const [keyword, setKeyword] = useState("");
   const [page, setPage] = useState(1);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("shoes");
   const { data: items, status } = useQuery(
     ["get-items", { keyword, page, category }],
     getItems
@@ -14,17 +14,33 @@ function Browse() {
   return (
     <div className="min-h-screen pt-16 relative">
       <ul className="bg-[#eef4f9] uppercase  mt-10 mb-4 w-full flex justify-center flex-wrap mc text-md font-bold">
-        <li className="px-3 my-2 mx-4 cursor-pointer hover:underline">Shoes</li>
-        <li className="px-3 my-2 mx-4 cursor-pointer hover:underline">
-          Shitys
+        <li
+          className="px-3 my-2 mx-4 cursor-pointer hover:underline"
+          onClick={() => setCategory("shoes")}
+        >
+          Shoes
         </li>
-        <li className="px-3 my-2 mx-4 cursor-pointer hover:underline">
+        <li
+          className="px-3 my-2 mx-4 cursor-pointer hover:underline"
+          onClick={() => setCategory("shirts")}
+        >
+          Shirts
+        </li>
+        <li
+          className="px-3 my-2 mx-4 cursor-pointer hover:underline"
+          onClick={() => setCategory("shorts")}
+        >
           Shorts
         </li>
-        <li className="px-3 my-2 mx-4 cursor-pointer hover:underline">HAts</li>
+        <li
+          className="px-3 my-2 mx-4 cursor-pointer hover:underline"
+          onClick={() => setCategory("hats")}
+        >
+          Hats
+        </li>
       </ul>
       <h2 className="text-center text-lg uppercase sc">
-        <i class="fa-solid fa-arrow-right"></i> Shoes{" "}
+        <i class="fa-solid fa-arrow-right"></i> {category}
         <i class="fa-solid fa-arrow-left"></i>
       </h2>
       <div className="flex flex-wrap justify-center">

@@ -15,7 +15,7 @@ function CartCard({ data, refetch }) {
   };
 
   return (
-    <div className="bg-[#B9D2E6]  h-40 p-3 mx-1 md:mx-6 my-4 rounded flex  relative border max-w-lg	">
+    <div className="bg-[#B9D2E6] h-40 p-3 mx-1 md:mx-6 my-4 rounded flex  relative border md:max-w-lg	">
       <button
         onClick={(e) => {
           mutate(
@@ -50,16 +50,16 @@ function CartCard({ data, refetch }) {
         <p className="sc italic">{item.category}</p>
         <div className="flex justify-between">
           <p className="text-sm md:text-lg text-green-700">{item.price}$</p>
-          <div className="text-center">
+          <div className="text-center flex flex-wrap flex-col sm:flex-row">
             <input
               type="number"
-              className="min-w-0 w-16 rounded mx-0 text-xs sm:text-sm md:text-md"
+              className="min-w-0 w-16 rounded mx-0 text-xs sm:text-sm md:text-md my-1 text-center"
               value={itemQuantity}
               onChange={handleChange}
               min={1}
             />{" "}
             <button
-              className="px-2 rounded text-xs sm:text-sm md:text-md "
+              className="px-2 rounded text-xs sm:text-sm md:text-md my-1"
               onClick={(e) => {
                 mutate(
                   {
