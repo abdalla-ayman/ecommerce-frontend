@@ -15,7 +15,7 @@ function CartCard({ data, refetch }) {
   };
 
   return (
-    <div className="bg-[#B9D2E6] h-40 p-3 mx-1 md:mx-6 my-4 rounded flex  relative border md:max-w-lg	">
+    <div className="bg-slate-100 w-full h-40 p-3 mx-2 md:mx-6 my-2 rounded flex  relative border md:max-w-xl	">
       <button
         onClick={(e) => {
           mutate(
