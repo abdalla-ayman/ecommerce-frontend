@@ -27,11 +27,9 @@ function App() {
               <Route element={<Signup />} path="/auth/signup" />
             </>
           )}
-          {user && (
-            <>
-              <Route element={<ControlPanel />} path="/admin" />
-            </>
-          )}
+
+          <Route element={<ControlPanel />} path="/admin" />
+
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<Navigate to="/" replace />} />

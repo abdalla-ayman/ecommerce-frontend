@@ -15,8 +15,8 @@ const addItem = async (params) => {
   return res;
 };
 
-const getItems = async (params) => {
-  const { keyword, page, category } = params;
+const getItems = async ({ queryKey }) => {
+  const [_key, { keyword, page, category }] = queryKey;
   const res = await apiClient.get("/product/", {
     headers: {
       keyword,
@@ -27,4 +27,13 @@ const getItems = async (params) => {
   return res;
 };
 
-export { addItem, getItems };
+const deleteItem = async ({ id }) => {
+  const res = await apiClient.delete("/product/", {
+    headers: {
+      id,
+    },
+  });
+  return res;
+};
+
+export { addItem, getItems, deleteItem };

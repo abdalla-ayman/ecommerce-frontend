@@ -30,3 +30,8 @@ button {
   color: white;
   background-color: #153a5b;
 }
+
+#checkout-btn:disabled {
+  border-color: #d3d3d3;
+  color: #d3d3d3;
+}
