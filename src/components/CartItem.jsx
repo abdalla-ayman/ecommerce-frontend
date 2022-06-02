@@ -1,14 +1,25 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useMutation } from "react-query";
 import { addToCart } from "../api/cart";
 import { UserContext } from "../Context";
 
 function CartCard({ data, refetch }) {
   const [itemQuantity, setItemQuantity] = useState(data.quantity);
-  const { mutate, status } = useMutation(addToCart);
+  const { mutate, status, data: response } = useMutation(addToCart);
+  const { setUser, setIsLoading } = useContext(UserContext);
+  useEffect(() => {
+    if (status === "loading") {
+      setIsLoading(true);
+    }
+    if (status === "success") {
+      setIsLoading(false);
+      refetch();
+      setUser((oldUser) => {
+        return { ...oldUser, cart: response.data };
+      });
+    }
+  }, [status, setIsLoading, response]);
   const item = data.item;
-
-  const { setUser } = useContext(UserContext);
 
   const handleChange = (e) => {
     setItemQuantity(e.target.value);
@@ -18,21 +29,11 @@ function CartCard({ data, refetch }) {
     <div className="bg-slate-100 w-full h-40 p-3 mx-2 md:mx-6 my-2 rounded flex  relative border md:max-w-xl	">
       <button
         onClick={(e) => {
-          mutate(
-            {
-              action: "delete",
-              id: item._id,
-              quantity: 0,
-            },
-            {
-              onSuccess: (response) => {
-                refetch();
-                setUser((oldUser) => {
-                  return { ...oldUser, cart: response.data };
-                });
-              },
-            }
-          );
+          mutate({
+            action: "delete",
+            id: item._id,
+            quantity: 0,
+          });
         }}
         className="text-red-600 border zw-fit bg-white absolute right-0 top-0 rounded px-3 py-1 text-sm md:text-lg"
       >
@@ -61,21 +62,11 @@ function CartCard({ data, refetch }) {
             <button
               className="px-2 rounded text-xs sm:text-sm md:text-md my-1"
               onClick={(e) => {
-                mutate(
-                  {
-                    action: "replace",
-                    quantity: itemQuantity,
-                    id: item._id,
-                  },
-                  {
-                    onSuccess: (response) => {
-                      refetch();
-                      setUser((oldUser) => {
-                        return { ...oldUser, cart: response.data };
-                      });
-                    },
-                  }
-                );
+                mutate({
+                  action: "replace",
+                  quantity: itemQuantity,
+                  id: item._id,
+                });
               }}
             >
               UPDATE

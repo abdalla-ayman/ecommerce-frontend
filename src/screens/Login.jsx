@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "react-query";
 import { login } from "../api/user";
@@ -8,23 +8,31 @@ import InputAndLabel from "../components/InputAndLabel";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { mutate, status } = useMutation(login);
-  const context = useContext(UserContext);
+  const { mutate, status, error, data } = useMutation(login);
+  const { setIsLoading, setErrorMessage, setUser } = useContext(UserContext);
+  useEffect(() => {
+    if (status == "loading") {
+      setIsLoading(true);
+      setErrorMessage("");
+    }
+    if (status == "error") {
+      setErrorMessage(error.response.data.message);
+      setIsLoading(false);
+    }
+    if (status == "success") {
+      setIsLoading(false);
+      setErrorMessage("");
+      setUser(data.data.user);
+      localStorage.setItem("token", data.data.token);
+    }
+  }, [status, error, setIsLoading, setErrorMessage]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    mutate(
-      {
-        email,
-        password,
-      },
-      {
-        onError: (error) => console.log(error.response.data.message), //TODO: SHOW Error Message
-        onSuccess: (data) => {
-          context.setUser(data.data.user);
-          localStorage.setItem("token", data.data.token);
-        }, //TODO: Update Global state On Successfull login and Reroute to Main Page
-      }
-    );
+    mutate({
+      email,
+      password,
+    });
   };
 
   return (

@@ -15,6 +15,7 @@ function InputAndLabel({ state }) {
           id={id}
           onChange={handleChange}
           value={value}
+          required
         />
       ) : (
         <input
@@ -23,6 +24,7 @@ function InputAndLabel({ state }) {
           id={id}
           onChange={handleChange}
           accept="image/*"
+          required
         />
       )}
     </div>

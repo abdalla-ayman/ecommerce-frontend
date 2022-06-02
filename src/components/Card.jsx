@@ -1,47 +1,69 @@
 import { useMutation } from "react-query";
 import { addToCart } from "../api/cart";
 import { deleteItem } from "../api/product";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../Context";
 
 function Card({ item, refetch }) {
-  const { status, mutate } = useMutation(addToCart);
-  const { status: deleteItemStatus, mutate: deleteItemMutation } = useMutation(
-    deleteItem
+  const { status, mutate, error, data } = useMutation(addToCart);
+  const {
+    status: deleteItemStatus,
+    mutate: deleteItemMutation,
+    error: deleteItemError,
+  } = useMutation(deleteItem);
+  const { setUser, user, setIsLoading, setErrorMessage } = useContext(
+    UserContext
   );
-  const { setUser, user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (status === "loading") {
+      setIsLoading(true);
+      setErrorMessage("");
+    }
+    if (status === "error") {
+      setIsLoading(false);
+      setErrorMessage(error.response.data.message);
+    }
+    if (status === "success") {
+      setIsLoading(false);
+      setErrorMessage("");
+      setUser((oldUser) => {
+        return { ...oldUser, cart: data.data };
+      });
+    }
+  }, [error, data, status, setIsLoading, setErrorMessage]);
+  useEffect(() => {
+    if (deleteItemStatus === "loading") {
+      setIsLoading(true);
+      setErrorMessage("");
+    }
+    if (deleteItemStatus === "error") {
+      setIsLoading(false);
+      setErrorMessage(deleteItemError.response.data.message);
+    }
+    if (deleteItemStatus === "success") {
+      setIsLoading(false);
+      setErrorMessage("");
+      refetch();
+    }
+  }, [deleteItemError, deleteItemStatus, setIsLoading, setErrorMessage]);
 
   const _deleteItem = () => {
-    deleteItemMutation(
-      {
-        id: item._id,
-      },
-      {
-        onError: (error) => console.log(error),
-        onSuccess: refetch,
-      }
-    );
+    deleteItemMutation({
+      id: item._id,
+    });
   };
 
   const _addToCart = () => {
-    mutate(
-      {
-        id: item._id,
-        quantity: 1,
-        action: "update",
-      },
-      {
-        onError: (error) => console.log(error),
-        onSuccess: (response) =>
-          setUser((oldUser) => {
-            return { ...oldUser, cart: response.data };
-          }),
-      }
-    );
+    mutate({
+      id: item._id,
+      quantity: 1,
+      action: "update",
+    });
   };
 
   return (
-    <div className="h-96 w-72 border flex flex-col mx-5 my-5 rounded relative">
+    <div className="h-96 w-72 border flex flex-col mx-5 my-5 rounded relative bg-white">
       {user && user.role == "admin" && (
         <button
           className="text-red-500 zw-fit bg-white absolute right-0 top-0  px-3 py-1 text-lg"

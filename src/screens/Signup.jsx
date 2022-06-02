@@ -1,29 +1,42 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { signup } from "../api/user";
 import InputAndLabel from "../components/InputAndLabel";
+import { UserContext } from "../Context";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
+  const { mutate, status, data, error } = useMutation(signup);
+  const { setIsLoading, setErrorMessage } = useContext(UserContext);
+  const navigation = useNavigate();
+  useEffect(() => {
+    if (status == "loading") {
+      setIsLoading(true);
+      setErrorMessage("");
+    }
+    if (status == "error") {
+      setErrorMessage(error.response.data.message);
+      setIsLoading(false);
+    }
+    if (status == "success") {
+      setIsLoading(false);
+      setErrorMessage("account created successfly");
+      navigation("/auth/login");
+    }
+  }, [status, error, setIsLoading, setErrorMessage]);
 
-  const { mutate, status, data } = useMutation(signup);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    mutate(
-      {
-        email,
-        password,
-        firstname,
-        lastname,
-      },
-      {
-        onError: (e) => console.log(e.response.data.message), //TODO: SHOW Error Message
-      }
-    );
+    mutate({
+      email,
+      password,
+      firstname,
+      lastname,
+    });
   };
 
   return (

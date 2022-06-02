@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { addItem } from "../api/product";
 import InputAndLabel from "./InputAndLabel";
 import { useMutation } from "react-query";
+import { UserContext } from "../Context";
 
 function AddItem() {
   const [name, setName] = useState("");
@@ -9,7 +10,21 @@ function AddItem() {
   const [category, setCategory] = useState("shirt");
   const [img, setImg] = useState(null);
   const [imgPrev, setImgPrev] = useState("");
-  const { mutate, status } = useMutation(addItem);
+  const { mutate, status, error } = useMutation(addItem);
+  const { setIsLoading, setErrorMessage } = useContext(UserContext);
+  useEffect(() => {
+    if (status == "loading") {
+      setIsLoading(true);
+      setErrorMessage("");
+    }
+    if (status == "error") {
+      setErrorMessage(error);
+      setIsLoading(false);
+    }
+    if (status == "success" || status == "idle") {
+      setIsLoading(false);
+    }
+  }, [status, error, setIsLoading, setErrorMessage]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

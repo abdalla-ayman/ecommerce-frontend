@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { UserContext } from "../Context";
 import Card from "../components/Card";
 import { useQuery } from "react-query";
 import { getItems } from "../api/product";
@@ -7,13 +8,26 @@ function Browse() {
   const [keyword, setKeyword] = useState("");
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState("shoe");
-  const { data: items, status, refetch } = useQuery(
+  const { data: items, status, refetch, error } = useQuery(
     ["get-items", { keyword, page, category }],
     getItems
   );
+  const { setIsLoading } = useContext(UserContext);
+  useEffect(() => {
+    if (status == "loading") {
+      setIsLoading(true);
+    }
+    if (status == "error") {
+      setIsLoading(false);
+    }
+    if (status == "success" || status == "idle") {
+      setIsLoading(false);
+    }
+  }, [status, error, setIsLoading]);
+
   return (
-    <div className="min-h-screen pt-16 relative mb-10">
-      <ul className="bg-[#eef4f9] uppercase  mt-10 mb-4 w-full flex justify-center flex-wrap mc text-md font-bold">
+    <div className="min-h-screen pt-16 relative pb-10 bg-slate-100">
+      <ul className="bg-slate-300 uppercase  mt-2 mb-4 w-full flex justify-center flex-wrap mc text-md font-bold">
         <li
           className="px-3 my-2 mx-4 cursor-pointer hover:underline"
           onClick={() => setCategory("shoe")}

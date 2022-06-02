@@ -13,6 +13,7 @@ import { UserContext } from "./Context";
 
 function App() {
   const { user } = useContext(UserContext);
+
   return (
     <div className="">
       <BrowserRouter>

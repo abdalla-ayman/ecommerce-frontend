@@ -17,6 +17,7 @@ function Home() {
           src={womanShoppingSrc}
           alt=""
           className="my-8 mx-8 w-3/4 md:w-2/4 "
+          data-aos="flip-left"
         />
       </section>
       <section className="flex flex-col items-center my-16">
@@ -32,10 +33,12 @@ function Home() {
             src={mailboxSrc}
             alt=""
             className="my-8  w-32 md:w-64 mx-auto "
+            data-aos="fade-right"
           />
           <form
             className="text-left mx-auto	"
             onSubmit={(e) => e.preventDefault()}
+            data-aos="fade-left"
           >
             <InputAndLabel
               state={{
