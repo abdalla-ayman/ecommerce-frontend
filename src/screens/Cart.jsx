@@ -37,7 +37,7 @@ function Cart() {
       setIsLoading(false);
       setErrorMessage("");
     }
-  }, [status, error, setIsLoading, setErrorMessage]);
+  }, [status, error, setIsLoading, setErrorMessage, response]);
 
   return (
     <div className="min-h-screen pt-16 flex flex-col items-center bg-slate-200">
