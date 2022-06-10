@@ -16,7 +16,7 @@ function Navbar() {
         </div>
         <ul className="flex font-medium	items-center text-center">
           <li className="mx-2">
-            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/browse/products">Products</NavLink>
           </li>
           {user ? (
             <li className="mx-2">
@@ -38,7 +38,7 @@ function Navbar() {
             </li>
           )}
           <li>
-            <NavLink to="/cart" className="p-2 hidden md:inline">
+            <NavLink to="/browse/cart" className="p-2 hidden md:inline">
               <i class="fa-solid fa-cart-shopping"></i>{" "}
               <span className="rounded px-1 mx-auto text-sm bold bg-red-600 text-white">
                 {user ? (user.cart ? user.cart.itemsQuantity : 0) : 0}
@@ -48,7 +48,7 @@ function Navbar() {
         </ul>
       </nav>
       <div className="fixed bottom-0 right-0 mb-10 mr-4 bg-slate-300 drop-shadow-2xl p-3 rounded-full	 z-50">
-        <NavLink to="/cart" className=" text-lg mc inline md:hidden">
+        <NavLink to="/browse/cart" className=" text-lg mc inline md:hidden">
           <i class="fa-solid fa-cart-shopping"></i>{" "}
           <span className="rounded px-1  text-sm bold bg-red-600 text-white">
             {user ? (user.cart ? user.cart.itemsQuantity : 0) : 0}

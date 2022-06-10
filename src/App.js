@@ -31,8 +31,8 @@ function App() {
 
           <Route element={<ControlPanel />} path="/admin" />
 
-          <Route path="/products" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/browse/products" element={<Products />} />
+          <Route path="/browse/cart" element={<Cart />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />
