@@ -1,6 +1,6 @@
 import CartItem from "../components/CartItem";
-import { useQuery } from "react-query";
-import { getTheCart } from "../api/cart";
+import { useQuery, useMutation } from "react-query";
+import { getTheCart, checkout } from "../api/cart";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -15,6 +15,10 @@ function Cart() {
     {
       enabled: user ? true : false,
     }
+  );
+
+  const { error: checkoutError, mutate, status: checkoutStatus } = useMutation(
+    checkout
   );
   const { setIsLoading, setErrorMessage } = useContext(UserContext);
   useEffect(() => {
@@ -38,6 +42,17 @@ function Cart() {
       setErrorMessage("");
     }
   }, [status, error, setIsLoading, setErrorMessage, response]);
+
+  useEffect(() => {
+    if (checkoutStatus == "loading") {
+      setIsLoading(true);
+      setErrorMessage("");
+    }
+    if (checkoutStatus == "error") {
+      setErrorMessage(checkoutError.response.data.message);
+      setIsLoading(false);
+    }
+  }, [checkoutStatus, checkoutError, setIsLoading, setErrorMessage]);
 
   return (
     <div className="min-h-screen pt-16 flex flex-col items-center bg-slate-200">
@@ -66,6 +81,7 @@ function Cart() {
                 </p>
               )
             : null}
+          <div className="h-12"></div>
           <div className="mbc text-white px-2 py-4 fixed bottom-0 left-0 right-0 text-center">
             <p className="text-lg">
               {price} {price == "--" ? null : "$"}{" "}
@@ -74,6 +90,7 @@ function Cart() {
               disabled={price == "--"}
               id="checkout-btn"
               className="border-white border mt-2 mb-2 text-sm uppercase px-2 py-1 border-2 rounded-full "
+              onClick={mutate}
             >
               Checkout
             </button>

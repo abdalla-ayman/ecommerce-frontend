@@ -14,4 +14,9 @@ const getTheCart = async () => {
   return res;
 };
 
-export { addToCart, getTheCart };
+const checkout = async () => {
+  const res = await apiClient.get("/cart/checkout");
+  return res;
+};
+
+export { addToCart, getTheCart, checkout };
