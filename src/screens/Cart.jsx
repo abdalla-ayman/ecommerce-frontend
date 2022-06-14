@@ -70,11 +70,11 @@ function Cart() {
             : null}
           {response
             ? response.data.itemsQuantity == 0 && (
-                <p className="text-2xl my-16 text-white mbc px-4 py-2 rounded text-center">
+                <p className="text-2xl my-16 mc  px-4 py-2 rounded text-center">
                   Your cart is empty <br></br>
                   <Link
                     to={"/browse/products"}
-                    className="text-md font-light px-2 py-1 rounded my-2 inline-block hover:-translate-y-px bg-white mc	"
+                    className="text-md font-light px-2 py-1 rounded my-2 inline-block hover:-translate-y-px mbc text-white	"
                   >
                     start filling it
                   </Link>
