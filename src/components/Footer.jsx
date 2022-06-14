@@ -3,13 +3,11 @@ function Footer() {
     <footer className="mbc text-white pt-4 flex flex-col items-center">
       <ul className="flex ">
         <li className="mx-2">
-          <a href="">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-        </li>
-        <li className="mx-2">
-          <a href="">
-            <i class="fa-brands fa-facebook"></i>
+          <a
+            href="https://www.linkedin.com/in/abdalla-ayman-0252891b5/"
+            target="_blank"
+          >
+            <i class="fa-brands fa-linkedin"></i>
           </a>
         </li>
         <li className="mx-2">
