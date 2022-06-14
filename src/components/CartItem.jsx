@@ -60,7 +60,7 @@ function CartCard({ data, refetch }) {
               min={1}
             />{" "}
             <button
-              className="px-2 rounded text-xs sm:text-sm md:text-md my-1"
+              className="px-2 mbc rounded text-xs sm:text-sm md:text-md my-1"
               onClick={(e) => {
                 mutate({
                   action: "replace",

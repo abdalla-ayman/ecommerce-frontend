@@ -98,7 +98,7 @@ function AddItem() {
 
       <button
         type="submit"
-        className="mx-auto my-6 block border rounded px-3 py-1 bg-blue-500 uppercase"
+        className=" mx-auto my-6 block border rounded px-3 py-1 bg-blue-500 uppercase"
       >
         Add
       </button>

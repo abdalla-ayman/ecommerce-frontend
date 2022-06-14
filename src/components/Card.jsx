@@ -66,7 +66,7 @@ function Card({ item, refetch }) {
     <div className="h-96 w-72 border flex flex-col mx-5 my-5 rounded relative bg-white">
       {user && user.role == "admin" && (
         <button
-          className="text-red-500 zw-fit bg-white absolute right-0 top-0  px-3 py-1 text-lg"
+          className="text-red-500 zw-fit mbc bg-white absolute right-0 top-0  px-3 py-1 text-lg"
           onClick={_deleteItem}
         >
           <i class="fa-solid fa-trash-can"></i>
