@@ -35,7 +35,7 @@ function CartCard({ data, refetch }) {
             quantity: 0,
           });
         }}
-        className="text-red-600 border zw-fit bg-white absolute right-0 top-0 rounded px-3 py-1 text-sm md:text-lg"
+        className="text-red-600 border zw-fit bg-white absolute right-0 top-0 rounded px-3 py-1 text-base md:text-lg"
       >
         <i class="fa-solid fa-trash-can"></i>
       </button>
@@ -45,7 +45,7 @@ function CartCard({ data, refetch }) {
         className="w-32 object-cover"
       />
       <div className="mx-4 w-full ">
-        <h1 className="hover:underline cursor-pointer truncate text-xl mc my-4">
+        <h1 className="hover:underline cursor-pointer truncate text-base md:text-xl mc my-4">
           {item.name}
         </h1>
         <p className="sc italic">{item.category}</p>

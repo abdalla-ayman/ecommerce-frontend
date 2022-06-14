@@ -66,7 +66,7 @@ function Card({ item, refetch }) {
     <div className="h-96 w-72 border flex flex-col mx-5 my-5 rounded relative bg-white">
       {user && user.role == "admin" && (
         <button
-          className="text-red-500 zw-fit mbc bg-white absolute right-0 top-0  px-3 py-1 text-lg"
+          className="text-red-500 w-fit bg-white absolute right-0 top-0  px-3 py-1 text-lg"
           onClick={_deleteItem}
         >
           <i class="fa-solid fa-trash-can"></i>
@@ -82,7 +82,7 @@ function Card({ item, refetch }) {
         <p className=" sc italic">{item.category}</p>
         <p className="text-lg text-green-700">{item.price}$</p>
       </div>
-      <button className=" px-5 w-fit self-center  mt-4	" onClick={_addToCart}>
+      <button className="mbc px-5 w-fit self-center  mt-4	" onClick={_addToCart}>
         Add To Cart
       </button>
     </div>
