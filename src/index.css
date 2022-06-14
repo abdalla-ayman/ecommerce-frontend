@@ -31,8 +31,8 @@ textarea {
 }
 
 button {
-  color: white;
-  background-color: #153a5b;
+  color: white !important;
+  background-color: #153a5b !important;
 }
 
 #checkout-btn:disabled {
