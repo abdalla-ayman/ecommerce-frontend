@@ -11,7 +11,11 @@ const signup = async (params) => {
 };
 
 const validateToken = async () => {
-  const res = await apiClient.get("/validate-token");
+  const res = await apiClient.get("/validate-token", {
+    headers: {
+      token: localStorage.getItem("token") || "",
+    },
+  });
   return res;
 };
 

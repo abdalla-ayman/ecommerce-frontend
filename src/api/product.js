@@ -10,6 +10,7 @@ const addItem = async (params) => {
   const res = await apiClient.post("/product/create", formData, {
     headers: {
       "Content-type": "multipart/form-data",
+      token: localStorage.getItem("token") || "",
     },
   });
   return res;
@@ -31,6 +32,7 @@ const deleteItem = async ({ id }) => {
   const res = await apiClient.delete("/product/", {
     headers: {
       id,
+      token: localStorage.getItem("token") || "",
     },
   });
   return res;

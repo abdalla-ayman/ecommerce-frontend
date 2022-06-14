@@ -37,6 +37,8 @@ function Cart() {
           total += i.quantity * i.item.price;
         });
         setPrice(total);
+      } else {
+        setPrice("--");
       }
       setIsLoading(false);
       setErrorMessage("");
@@ -74,7 +76,7 @@ function Cart() {
                   Your cart is empty <br></br>
                   <Link
                     to={"/browse/products"}
-                    className="text-md font-light px-2 py-1 rounded my-2 inline-block hover:-translate-y-px mbc text-white	"
+                    className="text-base md:text-lg px-2 py-1 rounded my-2 inline-block hover:-translate-y-px mbc text-white	"
                   >
                     start filling it
                   </Link>
