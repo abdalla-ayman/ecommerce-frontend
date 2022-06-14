@@ -40,7 +40,7 @@ function CartCard({ data, refetch }) {
         <i class="fa-solid fa-trash-can"></i>
       </button>
       <img
-        src={`http://localhost:5000/${item.imgURL}`}
+        src={`/images/${item.imgURL}`}
         alt=""
         className="w-32 object-cover"
       />

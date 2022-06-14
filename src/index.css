@@ -7,7 +7,7 @@ body {
 }
 
 .mbc {
-  background-color: #153a5b;
+  background-color: #153a5b !important;
 }
 
 .sc {

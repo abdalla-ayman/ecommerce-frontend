@@ -73,7 +73,7 @@ function Card({ item, refetch }) {
         </button>
       )}
       <img
-        src={`http://localhost:5000/${item.imgURL}`}
+        src={`/images/${item.imgURL}`}
         alt=""
         className="w-full h-56	object-cover"
       />

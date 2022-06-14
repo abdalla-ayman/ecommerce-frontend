@@ -14,7 +14,7 @@ function Home() {
   }, []);
 
   return (
-    <div className=" px-4 py-32 text-center ">
+    <div className=" px-4 py-32 text-center overflow-x-hidden	">
       <section className="flex flex-col items-center  mb-32">
         <h1
           className="mc text-2xl md:text-3xl font-bold mb-6"
